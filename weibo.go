@@ -124,6 +124,16 @@ func encodeMultipart(params map[string]interface{}) (multipartContentType string
 				}
 				multipartContentType = bufferWriter.FormDataContentType()
 				io.Copy(picdata, value.(*os.File))
+			case []byte:
+				// NOTE:
+				// case []byte is added by BittenByDog
+				picData, err := bufferWriter.CreateFormField(key)
+				if err != nil {
+					return "", nil, err
+				}
+				multipartContentType = bufferWriter.FormDataContentType()
+				valueReader := bytes.NewReader(value.([]byte))
+				io.Copy(picData, valueReader)
 			default:
 				bufferWriter.WriteField(key, to.String(value))
 			}
