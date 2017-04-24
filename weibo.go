@@ -127,7 +127,7 @@ func encodeMultipart(params map[string]interface{}) (multipartContentType string
 			case []byte:
 				// NOTE:
 				// case []byte is added by BittenByDog
-				picData, err := bufferWriter.CreateFormField(key)
+				picData, err := bufferWriter.CreateFormFile(key, "fakeFileName")
 				if err != nil {
 					return "", nil, err
 				}
