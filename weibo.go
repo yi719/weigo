@@ -26,7 +26,7 @@ import (
 
 	simplejson "github.com/bitly/go-simplejson"
 	log "github.com/golang/glog"
-	to "github.com/gosexy/to"
+	to "github.com/xiam/to"
 )
 
 const (
